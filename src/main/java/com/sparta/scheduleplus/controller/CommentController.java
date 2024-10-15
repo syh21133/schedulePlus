@@ -2,8 +2,6 @@ package com.sparta.scheduleplus.controller;
 
 import com.sparta.scheduleplus.dto.CommentRequestDto;
 import com.sparta.scheduleplus.dto.CommentResponseDto;
-import com.sparta.scheduleplus.dto.ScheduleRequestDto;
-import com.sparta.scheduleplus.dto.ScheduleResponseDto;
 import com.sparta.scheduleplus.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +36,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/delete/{commentId}")
-    public String deleteSchedule(@RequestAttribute("userId") Long userId,@PathVariable Long commentId) {
+    public String deleteComment(@RequestAttribute("userId") Long userId,@PathVariable Long commentId) {
 
         return commentService.deleteComment(userId,commentId);
     }
