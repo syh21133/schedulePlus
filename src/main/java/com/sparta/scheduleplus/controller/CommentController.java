@@ -31,7 +31,7 @@ public class CommentController {
     }
 
     @PutMapping("/update/{commentId}")
-    public String updateSchedule(@RequestAttribute("userId") Long userId,@Valid ScheduleRequestDto dto,
+    public String updateComment(@RequestAttribute("userId") Long userId,@Valid CommentRequestDto dto,
                                  @PathVariable Long commentId) {
 
         return commentService.updateComment(userId,dto,commentId);
