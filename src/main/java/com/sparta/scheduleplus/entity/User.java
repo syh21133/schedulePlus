@@ -1,6 +1,7 @@
 package com.sparta.scheduleplus.entity;
 
 
+import com.sparta.scheduleplus.dto.UserRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +37,13 @@ public class User extends Timestamped {
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User(UserRequestDto dto) {
+        this.email = dto.getEmail();
+        this.username = dto.getUsername();
+        this.password = dto.getPassword();
+
     }
 
     public void update(String username, String password) {

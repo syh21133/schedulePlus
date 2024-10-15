@@ -6,19 +6,19 @@ import com.sparta.scheduleplus.entity.User;
 import com.sparta.scheduleplus.service.ScheduleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/schedule")
+@RequiredArgsConstructor
 public class ScheduleController {
     private final ScheduleService scheduleService;
 
 
-    public ScheduleController(ScheduleService scheduleService) {
-        this.scheduleService = scheduleService;
-    }
+
 
     @PostMapping("/create")
     public ScheduleResponseDto createSchedule(@RequestAttribute("userId") Long userId,@Valid ScheduleRequestDto dto) {
