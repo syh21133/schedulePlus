@@ -25,7 +25,6 @@ public class ScheduleController {
 
 
 
-
     @PostMapping("/create")
     public ScheduleResponseDto createSchedule(@RequestAttribute("userId") Long userId,@Valid ScheduleRequestDto dto) {
 
