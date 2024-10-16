@@ -7,8 +7,14 @@ import com.sparta.scheduleplus.service.ScheduleService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -42,6 +48,11 @@ public class ScheduleController {
     public String deleteSchedule(@RequestAttribute("userId") Long userId,@PathVariable Long id) {
 
         return scheduleService.deleteSchedule(userId,id);
+    }
+
+    @GetMapping("/pageList")
+    public Page<ScheduleResponseDto> pageSchedules(@RequestParam(required = false, defaultValue = "5") int page, @RequestParam(required = false, defaultValue = "10") int size) {
+        return scheduleService.pageSchedules(page-1,size).map(ScheduleResponseDto::new);
     }
 
 

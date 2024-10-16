@@ -16,7 +16,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserService userService;
+//    private final UserService userService;
 
     public User findUser(Long userId) {
         return this.userRepository.findById(userId).orElseThrow(() ->
@@ -38,8 +38,8 @@ public class UserService {
     }
 
     public String updateUser(Long userId, UserRequestDto dto, Long id) {
-        User user = userService.findUser(userId);
-        User user1 = userService.findUser(id);
+        User user = findUser(userId);
+        User user1 = findUser(id);
 
         if(!user.equals(user1)) return "일치하지 않습니다.";
 
@@ -53,8 +53,8 @@ public class UserService {
 
 
     public String deleteUser(Long userId, Long id) {
-        User user = userService.findUser(userId);
-        User user1 = userService.findUser(id);
+        User user = findUser(userId);
+        User user1 = findUser(id);
 
         if(!user.equals(user1)) return "일치하지 않습니다.";
         userRepository.deleteById(id);

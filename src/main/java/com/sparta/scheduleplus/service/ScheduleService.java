@@ -6,9 +6,17 @@ import com.sparta.scheduleplus.entity.Schedule;
 import com.sparta.scheduleplus.entity.User;
 import com.sparta.scheduleplus.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PagedModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -61,5 +69,14 @@ public class ScheduleService {
     private Schedule findById(Long id) {
         return scheduleRepository.findById(id).orElseThrow(()->
                 new RuntimeException("Schedule not found"));
+    }
+
+
+
+    public Page<Schedule> pageSchedules(int i, int size) {
+
+        Pageable pageable = PageRequest.of(i,size);
+        return scheduleRepository.findAll(pageable);
+
     }
 }
