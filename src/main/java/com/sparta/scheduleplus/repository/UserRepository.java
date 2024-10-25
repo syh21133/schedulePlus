@@ -1,13 +1,17 @@
 package com.sparta.scheduleplus.repository;
 
-import com.sparta.scheduleplus.entity.User;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.sparta.scheduleplus.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findAllByOrderByModifiedAtDesc();
+	List<User> findAllByOrderByModifiedAtDesc();
+
+	Optional<User> findByEmail(String email);
 }
